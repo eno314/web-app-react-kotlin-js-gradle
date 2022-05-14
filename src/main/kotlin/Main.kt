@@ -1,5 +1,5 @@
 import kotlinx.browser.document
 
 fun main() {
-    document.bgColor = "red"
+    document.bgColor = "blue"
 }
