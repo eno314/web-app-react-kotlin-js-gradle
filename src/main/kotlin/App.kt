@@ -1,6 +1,7 @@
 import react.FC
 import react.Props
 import react.dom.html.ReactHTML.h3
+import react.useState
 
 val unwatchedVideos = listOf(
     Video(1, "Opening Keynote", "Andrey Breslav", "https://youtu.be/PsaFVLr8t4E"),
@@ -13,16 +14,23 @@ val watchedVideos = listOf(
 )
 
 val App = FC<Props> {
+    var currentVideo: Video? by useState(null)
+    val setCurrentVideo: (Video) -> Unit = { video -> currentVideo = video }
+
     h3 {
         +"Videos to watch"
     }
     VideoList {
         videos = unwatchedVideos
+        selectedVideo = currentVideo
+        onSelectVideo = setCurrentVideo
     }
     h3 {
         +"Videos watched"
     }
     VideoList {
         videos = watchedVideos
+        selectedVideo = currentVideo
+        onSelectVideo = setCurrentVideo
     }
 }
